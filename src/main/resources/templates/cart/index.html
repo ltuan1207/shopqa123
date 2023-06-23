@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <title>MultiShop - Online Shop Website Template</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <th:block th:replace="_layout :: link-css"> </th:block>
+  <th:block th:replace="_layout :: link-css1"> </th:block>
+  <th:block th:replace="_layout :: link-css2"> </th:block>
+  <th:block th:replace="_layout :: link-fontawesome"> </th:block>
+  <th:block th:replace="_layout :: link-fontfamily"> </th:block>
+  <th:block th:replace="_layout :: link-preconnect"> </th:block>
+</head>
+
+<body>
+
+
+<th:block th:replace="_layout :: header"></th:block>
+
+  <h3> GIỎ HÀNG </h3>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Image</th>
+      <th scope="col">Price</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Total</th>
+      <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="cartItem, itemIndex : ${cartItems}">
+      <td th:text="${itemIndex.index + 1}"></td>
+      <td th:text="${cartItem.name}"></td>
+      <td>
+        <img th:src="@{/img/__${cartItem.imageUrl}__}" height="120" width="150" alt="Product Image">
+      </td>
+      <td th:text="${cartItem.price}"></td>
+      <td>
+        <form th:action="@{/cart/update}" method="post">
+          <input type="hidden" name="productId" th:value="${cartItem.id}" />
+          <input type="number" name="quantity" min="1" th:value="${cartItem.quantity}" />
+          <button type="submit">Update</button>
+        </form>
+      </td>
+      <td th:text="${cartItem.price * cartItem.quantity}"></td>
+      <td>
+        <form th:action="@{/cart/remove/{productId}(productId=${cartItem.id})}" method="post">
+          <button type="submit" class="btn btn-danger">Remove</button>
+        </form>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="5"></td>
+      <td class="total-price" colspan="2">
+        <h3>Total Price: <span th:text="${totalPrice}"></span></h3>
+<!--        <form th:action="@{/cart/order}" method="post">-->
+<!--          <button type="submit" class="btn btn-success">Order</button>-->
+<!--        </form>-->
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+<th:block th:replace="_layout :: footer"></th:block>
+
+
+<!-- Back to Top -->
+<a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{/lib/easing/easing.min.js}"></script>
+<script th:src="@{/lib/owlcarousel/owl.carousel.min.js}"></script>
+
+<!-- Contact Javascript File -->
+<script th:src="@{/mail/jqBootstrapValidation.min.js}"></script>
+<script th:src="@{/mail/contact.js}"></script>
+
+<!-- Template Javascript -->
+<script th:src="@{/js/main.js}"></script>
+</body>
