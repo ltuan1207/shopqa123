@@ -6,13 +6,17 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Data
 @Entity
 @Table(name = "user")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  Long id;
+    private  Integer user_id;
+//    private  Long id;
 
     @Column(name = "username", length = 50, nullable = false, unique = true)
     @NotBlank(message = "Username is required!")
@@ -32,6 +36,12 @@ public class User {
     @NotBlank(message = "Your name is required!")
     @Size(max = 50, message = "Your name must be less then 50 characters!")
     private String name;
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(name = "UserRole",
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "role_id"))
+    private Set<Role> roles = new HashSet<>();
 //
 //    @ManyToMany
 //    @JoinColumn

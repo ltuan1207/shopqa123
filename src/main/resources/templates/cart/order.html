@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <title>MultiShop - Online Shop Website Template</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <th:block th:replace="_layout :: link-css"> </th:block>
+  <th:block th:replace="_layout :: link-css1"> </th:block>
+  <th:block th:replace="_layout :: link-css2"> </th:block>
+  <th:block th:replace="_layout :: link-fontawesome"> </th:block>
+  <th:block th:replace="_layout :: link-fontfamily"> </th:block>
+  <th:block th:replace="_layout :: link-preconnect"> </th:block>
+</head>
+
+<body>
+
+
+<th:block th:replace="_layout :: header"></th:block>
+
+<h1>Đặt hàng thành công!</h1>
+<p>Đơn đặt hàng đã được ghi nhận.!</p>
+<a href="/products" class="btn btn-primary">Tiếp tục mua sắm</a>
+<a href="/cart/payment" class="btn btn-primary">Thanh toán</a>
+
+<th:block th:replace="_layout :: footer"></th:block>
+
+
+<!-- Back to Top -->
+<a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{/lib/easing/easing.min.js}"></script>
+<script th:src="@{/lib/owlcarousel/owl.carousel.min.js}"></script>
+
+<!-- Contact Javascript File -->
+<script th:src="@{/mail/jqBootstrapValidation.min.js}"></script>
+<script th:src="@{/mail/contact.js}"></script>
+
+<!-- Template Javascript -->
+<script th:src="@{/js/main.js}"></script>
+</body>
