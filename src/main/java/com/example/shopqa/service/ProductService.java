@@ -13,8 +13,6 @@ import java.util.Optional;
 public class ProductService implements ProductServiceInter {
     @Autowired
     private IProductsRepository productsRepository;
-//    @Autowired
-//    private IProductsRepository IProductRepository;
 
 
 
@@ -55,4 +53,17 @@ public class ProductService implements ProductServiceInter {
         return  productsRepository.findById(id).stream().findFirst().orElse(null);
     }
 
+    public void addProduct(Product product){
+        productsRepository.save(product);
+    }
+
+    public void editProduct(Product product){
+        productsRepository.save(product);
+    }
+
+    public Product deleteProduct(Integer id){
+        Product product = null;
+        productsRepository.deleteById(id);
+        return product;
+    }
 }

@@ -24,7 +24,10 @@ import java.nio.file.StandardCopyOption;
 import java.util.List;
 import java.util.UUID;
 
+
+
 @Controller
+@RequestMapping("/product")
 public class ProductController {
     @Autowired
     private ProductService productService;
@@ -47,7 +50,7 @@ public class ProductController {
         return "home/products";
     }
 
-    @PostMapping("/save")
+    /*@PostMapping("/save")
     public String saveProduct(@ModelAttribute("product") @Valid Product product,
                            @RequestParam("oldImage") String oldImage,
                            @RequestParam("imageFile") MultipartFile imageFile) throws IOException {
@@ -109,7 +112,7 @@ public class ProductController {
     public String deleteProduct(@PathVariable(value = "id") int id) {
         productServiceInter.deleteProductById(id);
         return "redirect:/";
-    }
+    }*/
 
     @GetMapping("/allProduct")
     public String showAllProduct(Model model) {
@@ -117,6 +120,40 @@ public class ProductController {
         model.addAttribute("products", products);
         model.addAttribute("category", categoryService.getAllCategories());
         return "admin/list_product";
+    }
+
+    @GetMapping("/createProduct")
+    public String createProduct(Model model){
+        model.addAttribute("product", new Product());
+        model.addAttribute("categories", categoryService.getAllCategories());
+        return "admin/create_product";
+    }
+    @PostMapping("/createProduct")
+    public String createProduct(@ModelAttribute("product") Product product){
+        productService.addProduct(product);
+        return "redirect:/product/allProduct";
+    }
+
+    @GetMapping("/editProduct/{id}")
+    public String editProduct(@PathVariable(value = "id") int id, Model model) {
+        Product product = productService.getProductById(id);
+        model.addAttribute("product", new Product());
+        model.addAttribute("categories",categoryService.getAllCategories());
+        model.addAttribute("product", product);
+        return "/admin/edit_product";
+    }
+
+    @PostMapping("/edit-save")
+    public String editProduct(@ModelAttribute("product") Product editProduct) {
+        productService.editProduct(editProduct);
+        return "redirect:/product/allProduct";
+    }
+    //
+    //Delete Book
+    @GetMapping("/deleteProduct/{id}")
+    public String deleteProduct(@PathVariable(value = "id") int id) {
+        productService.deleteProduct(id);
+        return "redirect:/product/allProduct";
     }
 
 }
