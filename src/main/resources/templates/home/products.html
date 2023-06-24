@@ -25,7 +25,7 @@
         <div class="col-lg-3 col-md-4 col-sm-6 pb-1" th:each="Product : ${products}">
             <div class="product-item bg-light mb-4">
                 <div class="product-img position-relative overflow-hidden">
-                    <img class="img-fluid w-100" th:src="@{/img/__${Product.imageUrl}__}" alt="">
+                    <img style="height 450px" class="img-fluid w-100" th:src="@{/img/__${Product.imageUrl}__}" alt="">
                     <div class="product-action">
 <!--                        <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>-->
                         <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>

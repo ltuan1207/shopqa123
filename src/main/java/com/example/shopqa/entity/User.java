@@ -6,6 +6,8 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
+import java.time.LocalDate;
+
 @Data
 @Entity
 @Table(name = "user")
@@ -32,6 +34,24 @@ public class User {
     @NotBlank(message = "Your name is required!")
     @Size(max = 50, message = "Your name must be less then 50 characters!")
     private String name;
+
+    @Size(max = 150)
+    @Column(name = "address", length = 150)
+    private String address;
+
+    @Size(max = 5)
+    @Column(name = "sex", length = 5)
+    private String sex;
+
+    @Lob
+    @Column(name = "image")
+    private String image;
+    @Size(max = 10)
+    @Column(name = "phone", length = 10)
+    private String phone;
+
+    @Column(name = "birthday")
+    private LocalDate birthday;
 //
 //    @ManyToMany
 //    @JoinColumn

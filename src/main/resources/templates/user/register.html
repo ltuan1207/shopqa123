@@ -34,24 +34,62 @@
       <form th:action="@{/register}" th:object="${user}" method="post">
         <div class="mb-3">
           <label for="name" class="form-label">First Name: </label><span class="text-danger">*</span>
-          <input type="text" class="form-control" th:field="*{name}" id="name">
+          <input type="text" class="form-control" th:field="*{name}" id="name" placeholder="Type your first name" required>
           <span class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"> </span>
         </div>
         <div class="mb-3">
           <label for="email" class="form-label">Email:</label>
-          <input type="email" class="form-control" th:field="*{email}" id="email">
-          <span class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+          <input type="email" class="form-control" th:field="*{email}" id="email" placeholder="Type your email" required>
+          <span class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"  ></span>
         </div>
         <div class="mb-3">
           <label for="username" class="form-label">Username: </label><span class="text-danger"></span>
-          <input type="text" class="form-control" id="username" th:field="*{username}">
+          <input type="text" class="form-control" id="username" th:field="*{username}" placeholder="Type your username" required>
           <span class="text-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
         </div>
         <div class="mb-3">
           <label for="password" class="form-label">Password: </label><span class="text-danger"></span>
-          <input type="password" class="form-control" th:field="*{password}" id="password">
+          <input type="password" class="form-control" th:field="*{password}" id="password" placeholder="Type a new password" required>
           <span class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
         </div>
+
+        <div class="mb-3">
+          <label for="address" class="form-label">Address: </label><span class="text-danger"></span>
+          <input type="text" class="form-control" th:field="*{address}" id="address" placeholder="Type your address" required>
+          <span class="text-danger" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></span>
+        </div>
+
+        <div class="mb-3">
+          <label for="phone" class="form-label">Phone: </label><span class="text-danger"></span>
+          <input type="text" class="form-control" th:field="*{phone}" id="phone">
+          <span class="text-danger" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></span>
+        </div>
+
+        <div class="form-group mb-3">
+          <label class="control-label" for="imageFile">Image :</label>
+          <img id="image" th:src="${user.image}" width="100px" height="100px"/>
+          <input type="file" class="form-control mt-1" id="imageFile" name="imageFile"
+                 accept="image/*">
+        </div>
+
+        <div class="mb-3">
+          <label class="control-label" for="sex">Sex: </label>
+          <select class="form-control" id="sex" name="sex" th:field="*{sex}" required>
+            <option value="">Select your sex</option>
+            <option value="Nam">Nam</option>
+            <option value="Nữ">Nữ</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="birthday" class="form-label">BirthDay: </label><span class="text-danger"></span>
+          <input type="date" class="form-control" th:field="*{birthday}" id="birthday">
+          <span class="text-danger" th:if="${#fields.hasErrors('birthday')}" th:errors="*{birthday}"
+                placeholder=""></span>
+        </div>
+
+
+
         <div class="d-grid gap-2">
           <button type="submit" class="btn btn-primary float-right">Sign up</button>
           <a class="text-primary text-center float-right" href="/login">Have an account? Sign in here.</a>

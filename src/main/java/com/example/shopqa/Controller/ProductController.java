@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
+
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
@@ -45,6 +47,22 @@ public class ProductController {
         return "home/products";
     }
 
+    @PostMapping("/save")
+    public String saveProduct(@ModelAttribute("product") @Valid Product product,
+                           @RequestParam("oldImage") String oldImage,
+                           @RequestParam("imageFile") MultipartFile imageFile) throws IOException {
+        if (!imageFile.isEmpty()) {
+            String fileName = imageFile.getOriginalFilename();
+            Path path = Paths.get("target/classes/static/assets/images/detail-product/" + fileName);
+            Files.copy(imageFile.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
+            product.setImageUrl("/assets/images/detail-product/" + fileName);
+        } else {
+            product.setImageUrl(oldImage);
+        }
+        productService.saveProduct(product);
+        return "redirect:/admin";
+    }
+
     @GetMapping("/createProduct")
     public String createProduct(Model model) {
         model.addAttribute("product", new Product());
@@ -56,7 +74,7 @@ public class ProductController {
     public String create(@Valid Product newProduct, @RequestParam MultipartFile imageProduct, BindingResult result, Model model){
         if(result.hasErrors()){
             model.addAttribute("product",newProduct);
-            return "admin/create_product";
+            return "admin/list_product";
         }
         if(imageProduct != null && imageProduct.getSize() > 0)
         {
@@ -84,7 +102,7 @@ public class ProductController {
     public String editProduct(@PathVariable(value = "id") int id, Model model) {
         Product product = productServiceInter.getProductById(id);
         model.addAttribute("product", product);
-        return "admin/edit";
+        return "admin/edit_product";
     }
 
     @GetMapping("/deleteProduct/{id}")

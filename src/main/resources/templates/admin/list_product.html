@@ -50,11 +50,12 @@
             <td th:text="${products.description}"></td>
             <td th:text="${products.quantity}"></td>
             <td th:text="${products.category.name}"> </td>
-<!--            <td>-->
-<!--                <a th:href="@{/admin/editProduct (id=${products.id})}" class="text-info">Edit</a> |-->
-<!--                <a th:href="@{/product/deleteProduct (id=${products.id})}"-->
-<!--                   onclick ="return confirm('Are you sure?')">Delete</a>-->
-<!--            </td>-->
+            <td>
+                <a th:href="@{/admin/createProduct (id=${products.id})}" class="text-info">Add</a> |
+                <a th:href="@{/admin/editProduct (id=${products.id})}" class="text-info">Edit</a> |
+                <a th:href="@{/product/deleteProduct (id=${products.id})}"
+                   onclick ="return confirm('Are you sure?')">Delete</a>
+            </td>
 
         </tr>
     </table>
