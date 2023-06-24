@@ -129,8 +129,8 @@ public class ProductController {
         return "admin/create_product";
     }
     @PostMapping("/createProduct")
-    public String createProduct(@ModelAttribute("product") Product product){
-        productService.addProduct(product);
+    public String createProduct(@RequestBody @ModelAttribute Product product){
+        productService.saveProduct(product);
         return "redirect:/product/allProduct";
     }
 

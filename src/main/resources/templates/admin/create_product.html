@@ -62,7 +62,7 @@
 
         <div class="col-6 mb-3">
             <label class="form-label" for="category">Category:</label>
-            <select class="form-control" id="category" name="category.id">
+            <select class="form-control" id="category" name="category">
                 <option value="">-- Select Category --</option>
                 <option th:each="product_category : ${categories}" th:value="${product_category.categoryId}"
                         th:text="${product_category.name}"></option>

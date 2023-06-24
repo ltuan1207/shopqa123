@@ -5,15 +5,17 @@ import com.example.shopqa.entity.ProductCategory;
 import com.example.shopqa.repository.IProductsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class ProductService implements ProductServiceInter {
     @Autowired
     private IProductsRepository productsRepository;
-
+    private Product product;
 
 
     @Override
@@ -28,6 +30,8 @@ public class ProductService implements ProductServiceInter {
 
     @Override
     public void saveProduct(Product product) {
+
+        this.product=product;
         productsRepository.save(product);
     }
 
@@ -66,4 +70,5 @@ public class ProductService implements ProductServiceInter {
         productsRepository.deleteById(id);
         return product;
     }
+
 }
