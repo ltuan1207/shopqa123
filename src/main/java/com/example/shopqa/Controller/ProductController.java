@@ -150,9 +150,9 @@ public class ProductController {
     }
     //
     //Delete Book
-    @GetMapping("/deleteProduct/{id}")
-    public String deleteProduct(@PathVariable(value = "id") int id) {
-        productService.deleteProduct(id);
+    @GetMapping("/deleteProduct")
+    public String deleteProduct(@RequestParam("id") int id) {
+        productService.deleteProductById(id);
         return "redirect:/product/allProduct";
     }
 

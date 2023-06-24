@@ -65,10 +65,11 @@ public class ProductService implements ProductServiceInter {
         productsRepository.save(product);
     }
 
-    public Product deleteProduct(Integer id){
-        Product product = null;
-        productsRepository.deleteById(id);
-        return product;
-    }
+
+//    public Product deleteProductById(Integer id){
+//        Product product = null;
+//        productsRepository.deleteById(id);
+//        return product;
+//    }
 
 }
