@@ -49,7 +49,7 @@ public class CartController {
         if (product != null) {
             cartService.addToCart(product);
         }
-        return "redirect:/cart";
+        return "redirect:/";
     }
     @PostMapping("/update")
     public String updateCartItem(@RequestParam("productId") Integer productId, @RequestParam("quantity") int quantity) {

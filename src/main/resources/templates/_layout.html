@@ -48,8 +48,17 @@
                     <div class="btn-group">
                         <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">My Account</button>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="/login">Sign in</a>
-                            <a class="dropdown-item" href="/register">Sign up</a>
+                            <span sec:authorize="isAuthenticated()">
+                                 <span sec:authentication="name"></span> |
+                                 <form th:action="@{/logout}" method="post" class="d-inline">
+                                      <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                                      <button type="submit" class="btn btn-link login-logout-btn">Logout</button>
+                                 </form>
+                            </span>
+                            <span sec:authorize="!isAuthenticated()">
+                                <a class="dropdown-item" sec:authorize="isAnonymous()" th:href="@{user/login}">Sign in</a>
+                                <a class="dropdown-item" sec:authorize="isAnonymous()" th:href="@{user/register}">Sign up</a>
+                            </span>
                         </div>
                     </div>
                     <div class="btn-group mx-2">

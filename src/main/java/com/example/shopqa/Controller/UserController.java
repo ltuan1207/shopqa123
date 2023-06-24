@@ -25,6 +25,11 @@ public class UserController {
     public String login(){
         return "user/login";
     }
+
+    @PostMapping("/logout")
+    public String logout() {
+        return "logout";
+    }
     @GetMapping("/register")
     public String register(Model model){
         model.addAttribute("user", new User());
