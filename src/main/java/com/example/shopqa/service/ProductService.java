@@ -53,11 +53,9 @@ public class ProductService implements ProductServiceInter {
         return  productsRepository.findById(id).stream().findFirst().orElse(null);
     }
 
-    public void addProduct(Product product){
-        productsRepository.save(product);
-    }
 
     public void editProduct(Product product){
+        this.product = product;
         productsRepository.save(product);
     }
 
