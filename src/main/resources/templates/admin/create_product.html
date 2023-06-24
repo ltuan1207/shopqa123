@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <th:block th:replace="_layout :: link-css"> </th:block>
+    <th:block th:replace="_layout :: link-css1"> </th:block>
+    <th:block th:replace="_layout :: link-css2"> </th:block>
+    <th:block th:replace="_layout :: link-fontawesome"> </th:block>
+    <th:block th:replace="_layout :: link-fontfamily"> </th:block>
+    <th:block th:replace="_layout :: link-preconnect"> </th:block>
+</head>
+<body>
+<th:block th:replace="_layout :: header"></th:block>
+<!-- Breadcrumb Start -->
+<div class="container-fluid">
+    <div class="row px-xl-5">
+        <div class="col-12">
+            <nav class="breadcrumb bg-light mb-30">
+                <a class="breadcrumb-item text-dark" href="/">Home</a>
+                <span class="breadcrumb-item active">Product</span>
+                <span class="breadcrumb-item active">Create</span>
+            </nav>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb End -->
+<div class="container">
+    <h3 class="card-title text-center">Create Product</h3>
+    <form action="#" th:action="@{/admin/create_product}" th:object="${product}" method="post">
+        <div class="col-6 mb-3">
+            <label class="form-label" >Name:</label>
+            <input type="text" th:field="*{name}" class="form-control mb-4 col-4" placeholder="Name">
+        </div>
+
+        <div class="col-6 mb-3">
+            <label class="form-label">Description:</label>
+            <input type="text" th:field="*{description}" class="form-control mb-4 col-4" placeholder="Description">
+        </div>
+        <div class="col-6 mb-3">
+            <label class="form-label">Quantity:</label>
+            <input type="text" th:field="*{quantity}" class="form-control mb-4 col-4" placeholder="Quantity">
+        </div>
+        <div class="col-6 mb-3">
+            <label class="form-label">Price:</label>
+            <input type="text" th:field="*{price}" class="form-control mb-4 col-4" placeholder="Price">
+        </div>
+
+        <div class="col-6 mb-3">
+            <label class="form-label">Image:</label>
+            <input type="text" th:field="*{imageUrl}"  class="form-control mb-4 col-4" placeholder="Image">-->
+        </div>
+
+<!--        <div class="col-6 mb-3">-->
+<!--            <label class="form-label" for="image">Image: </label>-->
+<!--            <input class="form-control" type="text" th:field="*{image}" id="image">-->
+<!--        </div>-->
+
+
+        <div class="col-6 mb-3">
+            <label class="form-label" for="category">Category:</label>
+            <select class="form-control" id="category" name="category.id">
+                <option value="">-- Select Category --</option>
+                <option th:each="product_category : ${categories}" th:value="${product_category.categoryId}"
+                        th:text="${product_category.name}"></option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-info col-2">Save Product</button>
+    </form>
+
+    <a th:href="@{/}"> Back</a>
+</div>
+
+
+<th:block th:replace="_layout :: footer"></th:block>
+
+<!-- Back to Top -->
+<a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<!--<script th:src="@{/lib/easing/easing.min.js}"></script>-->
+<!--&lt;!&ndash;<script th:src="@{/lib/owl/owl.carousel.min.js}"></script>&ndash;&gt;-->
+
+<!--&lt;!&ndash;&lt;!&ndash; Contact Javascript File &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;<script th:src="@{/mail/jqBootstrapValidation.min.js}"></script>&ndash;&gt;-->
+<!--&lt;!&ndash;<script th:src="@{/mail/contact.js}"></script>&ndash;&gt;-->
+
+<!--&lt;!&ndash; Template Javascript &ndash;&gt;-->
+<!--<script th:src="@{/js/main.js}"></script>-->
+</body>
+</html>

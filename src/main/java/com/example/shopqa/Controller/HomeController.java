@@ -29,7 +29,7 @@ public class HomeController {
     public String home( Model model){
         List<ProductCategory> categories = categoryService.getAllCategories();
         model.addAttribute("categories", categories);
-        List<Product> products = productService.getAllProducts();
+        List<Product> products = productService.getAllProduct();
         model.addAttribute("products", products);
         return "home/index";
     }

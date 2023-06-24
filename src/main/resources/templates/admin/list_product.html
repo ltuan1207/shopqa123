@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <th:block th:replace="_layout :: link-css"> </th:block>
+    <th:block th:replace="_layout :: link-css1"> </th:block>
+    <th:block th:replace="_layout :: link-css2"> </th:block>
+    <th:block th:replace="_layout :: link-fontawesome"> </th:block>
+    <th:block th:replace="_layout :: link-fontfamily"> </th:block>
+    <th:block th:replace="_layout :: link-preconnect"> </th:block>
+</head>
+<body>
+<th:block th:replace="_layout :: header"></th:block>
+<!-- Breadcrumb Start -->
+<div class="container-fluid">
+    <div class="row px-xl-5">
+        <div class="col-12">
+            <nav class="breadcrumb bg-light mb-30">
+                <a class="breadcrumb-item text-dark" href="/">Home</a>
+                <span class="breadcrumb-item active">Product</span>
+                <span class="breadcrumb-item active">List</span>
+            </nav>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb End -->
+<div class="container">
+    <h1 th:text="${title}"></h1>
+    <table class="table">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Image</th>
+            <th>Price</th>
+            <th>Description</th>
+            <th>Quantity</th>
+            <th>Category</th>
+            <th>Action</th>
+        </tr>
+
+        <tr th:each="products : ${products}">
+            <td th:text="${products.id}"></td>
+            <td th:text="${products.name}"></td>
+            <td th:text="${products.imageUrl}"></td>
+            <td th:text="${products.price}"></td>
+            <td th:text="${products.description}"></td>
+            <td th:text="${products.quantity}"></td>
+            <td th:text="${products.category.name}"> </td>
+<!--            <td>-->
+<!--                <a th:href="@{/admin/editProduct (id=${products.id})}" class="text-info">Edit</a> |-->
+<!--                <a th:href="@{/product/deleteProduct (id=${products.id})}"-->
+<!--                   onclick ="return confirm('Are you sure?')">Delete</a>-->
+<!--            </td>-->
+
+        </tr>
+    </table>
+</div>
+
+<th:block th:replace="_layout :: footer"></th:block>
+
+<!-- Back to Top -->
+<a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
