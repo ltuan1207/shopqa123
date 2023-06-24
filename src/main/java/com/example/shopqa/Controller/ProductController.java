@@ -140,7 +140,7 @@ public class ProductController {
         model.addAttribute("product", new Product());
         model.addAttribute("categories",categoryService.getAllCategories());
         model.addAttribute("product", product);
-        return "/admin/edit_product";
+        return "admin/edit_product";
     }
 
     @PostMapping("/edit-save")

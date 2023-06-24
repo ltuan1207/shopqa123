@@ -53,7 +53,7 @@
             <td th:text="${product.category.name}"> </td>
             <td>
 
-                <a th:href="@{/product/editProduct (id=${product.id})}" class="text-info">Edit</a> |
+                <a th:href="@{/product/editProduct/${product.id}}" class="text-info">Edit</a> |
                 <a th:href="@{/product/deleteProduct (id=${product.id})}"
                    onclick ="return confirm('Are you sure?')">Delete</a>
             </td>
