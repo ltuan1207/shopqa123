@@ -51,11 +51,11 @@
 
         <div class="form-group">
             <label for="imageFile">Image:</label>
-            <img id="imagePreview" th:src="${tour.image}" width="100px" height="100px"
+            <img id="imagePreview" th:src="${product.imageurl}" width="100px" height="100px"
                  alt="Failed to load image"/>
             <input type="file" class="form-control mt-1" id="imageFile" name="imageFile"
                    accept="image/*">
-            <input type="hidden" name="oldImage" th:value="${tour.image}">
+            <input type="hidden" name="oldImage" th:value="${product.image}">
         </div>
 
         <!--        <div class="col-6 mb-3">-->

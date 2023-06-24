@@ -49,9 +49,13 @@
             <input type="text" th:field="*{price}" class="form-control mb-4 col-4" placeholder="Price">
         </div>
 
-        <div class="col-6 mb-3">
-            <label class="form-label">Image:</label>
-            <input type="text" th:field="*{imageUrl}"  class="form-control mb-4 col-4" placeholder="Image">
+        <div class="form-group">
+            <label for="imageFile">Image:</label>
+            <img id="imagePreview" th:src="${product.image}" width="100px" height="100px"
+                 alt="Failed to load image"/>
+            <input type="file" class="form-control mt-1" id="imageFile" name="imageFile"
+                   accept="image/*">
+            <input type="hidden" name="oldImage" th:value="${tour.image}">
         </div>
 
 <!--       <div class="col-6 mb-3">-->
