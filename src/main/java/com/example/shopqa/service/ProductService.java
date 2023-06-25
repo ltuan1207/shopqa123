@@ -37,15 +37,11 @@ public class ProductService implements ProductServiceInter {
 
     @Override
     public Product getProductById(int id) {
-        Optional<Product> optional = productsRepository.findById(id);
-        Product product = null;
 
-        if (optional.isPresent()) {
-            product = optional.get();
-        } else {
-            throw new RuntimeException(" Employee not found for id :: " + id);
-        }
-        return product;
+            Optional<Product> optional = productsRepository.findById(id);
+            return optional.orElse(null);
+
+
     }
 
     @Override
@@ -57,11 +53,9 @@ public class ProductService implements ProductServiceInter {
         return  productsRepository.findById(id).stream().findFirst().orElse(null);
     }
 
-    public void addProduct(Product product){
-        productsRepository.save(product);
-    }
 
     public void editProduct(Product product){
+        this.product = product;
         productsRepository.save(product);
     }
 
