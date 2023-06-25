@@ -139,17 +139,32 @@
                             <a href="/" class="nav-item nav-link active">Home</a>
 <!--                            <a th:href="@{/templates/home/shop.html}" class="nav-item nav-link">Shop</a>
                             <a th:href="@{/templates/home/detail.html}" class="nav-item nav-link">Shop Detail</a>-->
-                            <a href="/product/allProduct" class="nav-item nav-link active">All Product</a>
-                            <a href="/product/createProduct" class="nav-item nav-link active">Create Product</a>
+
 <!--                            <a href="/product/editProduct" class="nav-item nav-link active">Edit </a>-->
 
                             <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages <i class="fa fa-angle-down mt-1"></i></a>
-                            <!--                            <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
-                                                            <a th:href="@{/templates/home/cart.html}" class="dropdown-item">Shopping Cart</a>
-                                                            <a th:href="@{/templates/home/checkout.html}" class="dropdown-item">Checkout</a>
-                                                        </div>-->
+                                                        <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
+                                                            <a href="/cart" class="dropdown-item">Shopping Cart</a>
+                                                           <!-- <a th:href="@{/templates/home/checkout.html}" class="dropdown-item">Checkout</a>-->
+                                                        </div>
                         </div>
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Product <i class="fa fa-angle-down mt-1"></i></a>
+                                <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
+                                    <a href="/product/allProduct" class="dropdown-item">All Product</a>
+                                    <a href="/product/createProduct" class="dropdown-item">Create Product</a>
+                                    <!-- <a th:href="@{/templates/home/checkout.html}" class="dropdown-item">Checkout</a>-->
+                                </div>
+                            </div>
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Category <i class="fa fa-angle-down mt-1"></i></a>
+                                <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
+                                    <a href="/category/allProductCategory" class="dropdown-item">All Product Category</a>
+                                    <a href="/category/createProductCategory" class="dropdown-item">Create Product Category</a>
+                                    <!-- <a th:href="@{/templates/home/checkout.html}" class="dropdown-item">Checkout</a>-->
+                                </div>
+                            </div>
                             <!--
                                                     <a th:href="@{/templates/home/contact.html}" class="nav-item nav-link">Contact</a>
                             -->
@@ -258,15 +273,15 @@
 <!-- JavaScript Libraries -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-<script th:src="@{/lib/easing/easing.min.js}"></script>
-<script th:src="@{/lib/owl/owl.carousel.min.js}"></script>
+<script src="/lib/easing/easing.min.js"></script>
+<script src="/lib/owl/owl.carousel.min.js"></script>
 
 <!-- Contact Javascript File -->
-<script th:src="@{/mail/jqBootstrapValidation.min.js}"></script>
-<script th:src="@{/mail/contact.js}"></script>
+<script src="/mail/jqBootstrapValidation.min.js"></script>
+<script src="/mail/contact.js"></script>
 
 <!-- Template Javascript -->
-<script th:src="@{/js/main.js}"></script>
+<script src="/js/main.js"></script>
 </body>
 
 </html>
