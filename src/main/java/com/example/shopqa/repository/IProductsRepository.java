@@ -13,4 +13,6 @@ import java.util.List;
 @Repository
 public interface IProductsRepository extends JpaRepository<Product, Integer> {
     List<Product> findByCategory(ProductCategory category);
+    @Query("SELECT p FROM Product p WHERE p.name like  %:key%")
+    Page<Product> searchProducts(@Param("key") String key, Pageable pageable);
 }

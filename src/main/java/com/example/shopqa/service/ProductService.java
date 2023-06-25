@@ -5,23 +5,78 @@ import com.example.shopqa.entity.ProductCategory;
 import com.example.shopqa.repository.IProductsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
-public class ProductService {
+@Transactional
+public class ProductService implements ProductServiceInter {
     @Autowired
     private IProductsRepository productsRepository;
+    private Product product;
 
-    public List<Product> getAllProducts() {
-        return productsRepository.findAll();
-    }
 
+    @Override
     public List<Product> getProductsByCategory(ProductCategory category) {
         return productsRepository.findByCategory(category);
     }
-    public Product get(int id) {
-        return  productsRepository.findById(id).stream().findFirst().orElse(null);
+
+    @Override
+    public List<Product> getAllProduct() {
+        return productsRepository.findAll();
     }
 
+    @Override
+    public void saveProduct(Product product) {
+
+        this.product = product;
+        productsRepository.save(product);
+    }
+
+    @Override
+    public Product getProductById(int id) {
+        Optional<Product> optional = productsRepository.findById(id);
+        Product product = null;
+
+        if (optional.isPresent()) {
+            product = optional.get();
+        } else {
+            throw new RuntimeException(" Employee not found for id :: " + id);
+        }
+        return product;
+    }
+
+    @Override
+    public void deleteProductById(int id) {
+        productsRepository.deleteById(id);
+    }
+
+    public Product get(int id) {
+        return productsRepository.findById(id).stream().findFirst().orElse(null);
+    }
+
+    public void addProduct(Product product) {
+        productsRepository.save(product);
+    }
+
+    public void edit(Product editProduct) {
+        Product editPro = get(editProduct.getId());
+        if(editPro !=null && editPro .getId() != null) {
+            ///or implement clon()
+            editPro .setName(editProduct.getName());
+            editPro .setImageUrl(editProduct.getImageUrl());
+            editPro .setDescription(editProduct.getDescription());
+            editPro .setQuantity(editProduct.getQuantity());
+            editPro .setPrice(editProduct.getPrice());
+            productsRepository.save(editPro );
+        }
+    }
+
+    public Product deleteProduct(Integer id) {
+        Product product = null;
+        productsRepository.deleteById(id);
+        return product;
+    }
 }
