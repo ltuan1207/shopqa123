@@ -54,7 +54,7 @@ public class ProductCategoryController {
 
     @PostMapping("/edit-save")
     public String editProductCategory(@ModelAttribute("product") ProductCategory editProductCategory) {
-        productCategoryService.editProductCategory(editProductCategory);
+        productCategoryService.saveProductCategory(editProductCategory);
         return "redirect:/category/allProductCategory";
     }
     //

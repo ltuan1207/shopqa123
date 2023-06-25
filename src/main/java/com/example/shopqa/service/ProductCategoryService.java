@@ -70,7 +70,7 @@ public class ProductCategoryService implements ProductCategoryServiceInter {
     public void deleteProductCategoryById(int id) {
         categoryRepository.deleteById(id);
     }
-    public void editProductCategory(ProductCategory productCategory){
+    public void editProductCategoryById(ProductCategory productCategory){
         categoryRepository.save(productCategory);
     }
 
