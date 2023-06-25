@@ -7,6 +7,8 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @Entity
@@ -14,7 +16,7 @@ import java.time.LocalDate;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  Long id;
+    private  Integer user_id;
 
     @Column(name = "username", length = 50, nullable = false, unique = true)
     @NotBlank(message = "Username is required!")
@@ -56,10 +58,10 @@ public class User {
 //    @ManyToMany
 //    @JoinColumn
 //    private OrderDetail orderDetail;
-/*
-    @ManyToMany
-    @JoinTable(name = "user-role",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles = new HashSet<>();*/
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(name = "UserRole",
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "role_id"))
+    private Set<Role> roles = new HashSet<>();
 }

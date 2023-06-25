@@ -1,11 +1,14 @@
 package com.example.shopqa.service;
 
-import com.example.shopqa.entity.CartItem;
-import com.example.shopqa.entity.Product;
+import com.example.shopqa.entity.*;
+import com.example.shopqa.repository.IOrdersRepository;
+import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.annotation.SessionScope;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -54,5 +57,37 @@ public class CartService {
     }
     public void removeFromCart(Integer productId) {
         cartItems.removeIf(cartItem -> cartItem.getId().equals(productId));
+    }
+
+    @Autowired
+    private IOrdersRepository orderRepository;
+
+    @Transactional
+    public void orderCart(User user) {
+        // Create a new Order
+        Orders order = new Orders();
+        order.setOrderDate(new Date());
+        order.setPaid(false);
+        order.setUser(user);
+        // Iterate over cart items and create OrderDetails
+        List<OrdersDetail> orderDetails = new ArrayList<>();
+        for (CartItem cartItem : cartItems) {
+            OrdersDetail orderDetail = new OrdersDetail();
+
+            orderDetail.setOrder(order);
+            orderDetail.setPrice(cartItem.getPrice());
+            orderDetail.setQuantity(cartItem.getQuantity());
+            orderDetails.add(orderDetail);
+        }
+        // Set order details in the order
+        order.setOrderDetails(orderDetails);
+        // Save the order to the database
+        orderRepository.save(order);
+        // Clear the cart
+        clearCart();
+    }
+
+    public int getCartCount() {
+        return cartItems.size();
     }
 }
